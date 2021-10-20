@@ -1,4 +1,5 @@
 general/
+sample*.*
 
 node_modules/
 dist/
