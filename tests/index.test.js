@@ -9,5 +9,5 @@ const dom = new JSDOM(html)
 test('main title exists', function() {
   const mainTitle = dom.window.document.getElementById('main-title')
   expect(mainTitle).toBeTruthy()
-  expect(mainTitle.innerHTML).toBe('Bulls and Cows Guessing Game')
+  expect(mainTitle.innerHTML).toBe('Bulls and Cows')
 })
