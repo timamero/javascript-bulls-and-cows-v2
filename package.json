@@ -17,6 +17,7 @@
     "parcel": "^2.0.0"
   },
   "dependencies": {
-    "beercss": "^1.2.6"
+    "beercss": "^1.2.6",
+    "eslint-plugin-jest": "^25.2.2"
   }
 }
