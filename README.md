@@ -6,3 +6,4 @@
 ## Dependencies
 - [Parcel](https://parceljs.org/docs/)
 - [Jest](https://jestjs.io/docs/getting-started)
+- [ESLint](https://eslint.org/docs/user-guide/getting-started)
