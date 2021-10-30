@@ -3,6 +3,16 @@
 # Bulls and Cows Web Application
 [Play Bulls and Cows game here](https://bulls-and-cows-v2.netlify.app/)
 
+## Testing
+1. Start the server
+  ```sh
+  npm start
+  ```
+2. Run the tests
+  ```sh
+  npm run test
+  ```
+  
 ## Dependencies
 - [Parcel](https://parceljs.org/docs/)
 - [Jest](https://jestjs.io/docs/getting-started)
