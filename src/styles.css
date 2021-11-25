@@ -21,3 +21,10 @@ html {
   width: 0 !important;
   overflow: hidden;
 }
+
+/* .menu-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
