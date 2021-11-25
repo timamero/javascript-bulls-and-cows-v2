@@ -16,7 +16,7 @@
   <div id="menu" class="menu right middle-align hide">
     <button class="green small-margin">New Game</button>
     <button id="instructions-btn" class="pink small-margin">Instructions</button>
-    <button class="pink small-margin">About</button>
+    <button id="about-btn" class="pink small-margin">About</button>
     <a id="hide-menu-btn" class="chip square border right-round small-margin">
       <i>arrow_forward</i>
     </a>
@@ -28,31 +28,43 @@
   <!--Menu End-->
 
   <!--Instructions-->
-  <div id="instructions" class="hide">
+  <div id="instructions" class="modal card round">
     <div class="container">
-      <div class="card round">
-        
-        <div>
+      <div>
         <h2>Instructions</h2>
         <p>You have 20 turns to guess the four digit code.
           Each bull you get is a correct number in the correct position.
           Each cow you get is a correct number in the wrong position.
         </p>
         <a class="link" href="https://en.wikipedia.org/wiki/Bulls_and_Cows">Learn more about the bulls and cows guessing game here</a>
-        </div>
-        <div class="right-align">
-          <button id="close-instructions-btn" class="round pink small-margin">
-            <img src="./img/close-pngrepo-com.png" class="responsive">
-            <span>Close</span>
-          </button>
-        </div>
-        
       </div>
-    </div>
-    
-    
+      <div class="right-align">
+        <button id="close-instructions-btn" class="round pink small-margin">
+          <img src="./img/close-pngrepo-com.png" class="responsive">
+          <span>Close</span>
+        </button>
+      </div>     
+    </div>  
   </div>
   <!--Instructions End-->
+
+  <!--About-->
+  <div id="about" class="modal card round">
+    <div class="container">
+      <div>
+        <h2>About</h2>
+        <p>This website was created with JavaScript, HTML, and CSS.</p>
+        <a class="link" href="https://github.com/timamero/javascript-bulls-and-cows-v2">See the source code here</a>
+      </div>
+      <div class="right-align">
+        <button id="close-about-btn" class="round pink small-margin">
+          <img src="./img/close-pngrepo-com.png" class="responsive">
+          <span>Close</span>
+        </button>
+      </div>     
+    </div>  
+  </div>
+  <!--About End-->
   
   <script type="module" src="app.js"></script>
 </body>
