@@ -1,6 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Josefin+Slab:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Lato:wght@400;700&display=swap');
+/* font-family: 'Josefin Sans', sans-serif;
+font-family: 'Josefin Slab', serif;
+font-family: 'Lato', sans-serif */
+
 body,
 html {
   height: 100%;
+}
+
+h1, 
+h2, 
+h3 {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+p {
+  font-family: 'Josefin Slab', serif;
+}
+
+.number {
+  font-family: 'Lato', sans-serif
 }
 
 #main-title {
@@ -15,6 +34,14 @@ html {
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+#new-game-btn,
+#instructions-btn,
+#about-btn,
+#instructions-link,
+#about-link {
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 .hide {
