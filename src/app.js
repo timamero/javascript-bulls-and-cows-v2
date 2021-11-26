@@ -13,6 +13,9 @@ const instructions = document.getElementById('instructions')
 const closeInstructionsBtn = document.getElementById('close-instructions-btn')
 const about = document.getElementById('about')
 const closeAboutBtn = document.getElementById('close-about-btn')
+/* Game */
+const guessInput = document.getElementById('guess-input')
+const submitBtn = document.getElementById('submit-btn')
 
 /*
  * User Events
@@ -51,4 +54,9 @@ closeInstructionsBtn.addEventListener('click', () => {
 
 closeAboutBtn.addEventListener('click', () => {
   about.classList.toggle('active')
+})
+
+/* Game */
+submitBtn.addEventListener('click', () => {
+  console.log('guess submitted', guessInput.value)
 })
