@@ -1,4 +1,6 @@
 import 'beercss'
+import BullsAndCows from './BullsAndCows'
+
 /*
  * Elements
 */
@@ -16,6 +18,11 @@ const closeAboutBtn = document.getElementById('close-about-btn')
 /* Game */
 const guessInput = document.getElementById('guess-input')
 const submitBtn = document.getElementById('submit-btn')
+
+/*
+ * Initialize Bulls and Cows game
+*/
+let bac = new BullsAndCows()
 
 /*
  * User Events
@@ -59,4 +66,7 @@ closeAboutBtn.addEventListener('click', () => {
 /* Game */
 submitBtn.addEventListener('click', () => {
   console.log('guess submitted', guessInput.value)
+
+  bac.newGuess(guessInput.value)
+  console.log('lastGuess', bac.getGuesses())
 })
