@@ -14,12 +14,8 @@ h3 {
   font-family: 'Josefin Sans', sans-serif;
 }
 
-p, span {
-  font-family: 'Josefin Slab', serif;
-}
-
 .number {
-  font-family: 'Lato', sans-serif
+  font-family: 'Lato', sans-serif;
 }
 
 #main-title {
@@ -41,8 +37,16 @@ p, span {
 #about-btn,
 #submit-btn,
 #instructions-link,
-#about-link {
+#about-link,
+#close-instructions-btn,
+#close-about-btn {
   font-family: 'Josefin Sans', sans-serif;
+}
+
+#guess-input-helper,
+#about-content,
+#instructions-content {
+  font-family: 'Lato', sans-serif;
 }
 
 #game-title {
