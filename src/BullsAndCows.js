@@ -11,6 +11,11 @@ class BullsAndCows {
   newGuess(guess) {
     this.guesses.push(guess)
   }
+
+  validateGuess(guess) {
+    const regex = /\d{4}/ig
+    return regex.test(guess)
+  }
 }
 
-export default BullsAndCows
+module.exports = BullsAndCows
