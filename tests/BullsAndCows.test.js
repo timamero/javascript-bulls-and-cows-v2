@@ -11,6 +11,8 @@ test.only('guess validation method checks for four digit number', () => {
     ['a1b2', false],
     ['12345', false],
     ['1', false],
+    ['23', false],
+    ['345', false],
     ['', false]
   ]
 
