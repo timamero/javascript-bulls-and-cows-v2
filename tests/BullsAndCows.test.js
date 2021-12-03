@@ -13,11 +13,12 @@ test.only('guess validation method checks for four digit number', () => {
     ['1', false],
     ['23', false],
     ['345', false],
-    ['', false]
+    ['', false],
+    ['$&%^', false],
+    ['*()(($%', false]
   ]
 
   guessArr.forEach(guess => {
-    console.log(guess)
     expect(BullsAndCows.validateGuess(guess[0])).toBe(guess[1])
   })
 })
