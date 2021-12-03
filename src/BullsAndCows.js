@@ -12,9 +12,12 @@ class BullsAndCows {
     this.guesses.push(guess)
   }
 
-  validateGuess(guess) {
-    const regex = /\d{4}/ig
-    return regex.test(guess)
+  static validateGuess(guess) {
+    return guess.split('').length === 4
+      ? guess.split('')
+        .map(el => /\d/.test(Number(el, 10)))
+        .every(el => el === true)
+      : false
   }
 }
 
