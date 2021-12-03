@@ -1,6 +1,18 @@
-// import BullsAndCows  from '../src/BullsAndCows'
 const BullsAndCows = require('../src/BullsAndCows')
 
 test.only('guess validation method checks for four digit number', () => {
-  expect(BullsAndCows.valdiateGuess('1234')).toBe(true)
+  const guessArr = [
+    ['1234', true],
+    ['0000', true],
+    ['abcd', false],
+    ['a1b2', false],
+    ['12345', false],
+    ['1', false],
+    ['', false]
+  ]
+
+  guessArr.forEach(guess => {
+    console.log(guess)
+    expect(BullsAndCows.validateGuess(guess[0])).toBe(guess[1])
+  })
 })
