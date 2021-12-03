@@ -6,7 +6,7 @@ const options = {
   resources: 'usable'
 }
 
-test('main title exists', async function() {
+test.skip('main title exists', async function() {
   await JSDOM.fromURL('http://localhost:1234', options).then(dom => {
     const mainTitle = dom.window.document.getElementById('main-title')
     expect(mainTitle).toBeTruthy()
@@ -14,7 +14,7 @@ test('main title exists', async function() {
   })
 })
 
-describe('menu tests', function() {
+describe.skip('menu tests', function() {
   test('menu exists', async function() {
     await JSDOM.fromURL('http://localhost:1234', options).then(dom => {
       const menu = dom.window.document.getElementById('menu')

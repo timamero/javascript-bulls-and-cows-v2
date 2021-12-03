@@ -1,4 +1,6 @@
 import 'beercss'
+import BullsAndCows from './BullsAndCows'
+
 /*
  * Elements
 */
@@ -8,11 +10,19 @@ const menuBtn = document.getElementById('menu-btn')
 const hideMenuBtn = document.getElementById('hide-menu-btn')
 const instructionsBtn = document.getElementById('instructions-btn')
 const aboutBtn = document.getElementById('about-btn')
-/* Menu Views */
+/* Instruction and about modals */
 const instructions = document.getElementById('instructions')
 const closeInstructionsBtn = document.getElementById('close-instructions-btn')
 const about = document.getElementById('about')
 const closeAboutBtn = document.getElementById('close-about-btn')
+/* Game */
+const guessInput = document.getElementById('guess-input')
+const submitBtn = document.getElementById('submit-btn')
+
+/*
+ * Initialize Bulls and Cows game
+*/
+let bac = new BullsAndCows()
 
 /*
  * User Events
@@ -39,15 +49,24 @@ instructionsBtn.addEventListener('click', () => {
   menu.classList.toggle('hide')
 })
 
-closeInstructionsBtn.addEventListener('click', () => {
-  instructions.classList.toggle('active')
-})
-
 aboutBtn.addEventListener('click', () => {
   about.classList.toggle('active')
   menu.classList.toggle('hide')
 })
 
+/* Instruction and about modals */
+closeInstructionsBtn.addEventListener('click', () => {
+  instructions.classList.toggle('active')
+})
+
 closeAboutBtn.addEventListener('click', () => {
   about.classList.toggle('active')
+})
+
+/* Game */
+submitBtn.addEventListener('click', () => {
+  console.log('guess submitted', guessInput.value)
+
+  bac.newGuess(guessInput.value)
+  console.log('lastGuess', bac.getGuesses())
 })

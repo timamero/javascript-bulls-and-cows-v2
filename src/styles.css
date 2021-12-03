@@ -14,7 +14,7 @@ h3 {
   font-family: 'Josefin Sans', sans-serif;
 }
 
-p {
+p, span {
   font-family: 'Josefin Slab', serif;
 }
 
@@ -39,19 +39,22 @@ p {
 #new-game-btn,
 #instructions-btn,
 #about-btn,
+#submit-btn,
 #instructions-link,
 #about-link {
   font-family: 'Josefin Sans', sans-serif;
+}
+
+#game-title {
+  font-size: 2.5em;
+}
+
+#guess-input {
+  font-size: 2.5em;
+  font-family: 'Lato', sans-serif;
 }
 
 .hide {
   width: 0 !important;
   overflow: hidden;
 }
-
-/* .menu-view {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-} */
