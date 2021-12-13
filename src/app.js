@@ -20,6 +20,11 @@ const guessInput = document.getElementById('guess-input')
 const submitBtn = document.getElementById('submit-btn')
 
 /*
+ * Create containing for holding previous guesses
+*/
+const previousGuessesContainer = document.getElementById('previous-guesses')
+
+/*
  * Initialize Bulls and Cows game
 */
 let bac = new BullsAndCows()
@@ -67,6 +72,11 @@ closeAboutBtn.addEventListener('click', () => {
 submitBtn.addEventListener('click', () => {
   console.log('guess submitted', guessInput.value)
 
-  bac.newGuess(guessInput.value)
-  console.log('lastGuess', bac.getGuesses())
+  if (BullsAndCows.validateGuess(guessInput.value)) {
+    bac.newGuess(guessInput.value)
+    console.log('lastGuess', bac.getGuesses())
+
+    previousGuessesContainer.innerHTML += `<p>${guessInput.value}</p>`
+  }
+
 })
