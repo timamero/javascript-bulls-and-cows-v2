@@ -1,6 +1,6 @@
 const BullsAndCows = require('../src/BullsAndCows')
 
-test.only('guess validation method checks for four digit number', () => {
+test('guess validation method checks for four digit number', () => {
   const guessArr = [
     ['1234', true],
     ['0000', true],
@@ -21,4 +21,15 @@ test.only('guess validation method checks for four digit number', () => {
   guessArr.forEach(guess => {
     expect(BullsAndCows.validateGuess(guess[0])).toBe(guess[1])
   })
+})
+
+test.only('when 2 valid guesses are made, the getGuesses method returns an array with a length of 2', () => {
+  const bac = new BullsAndCows()
+
+  bac.newGuess('1234')
+  bac.newGuess('5678')
+
+  const guesses = bac.getGuesses()
+
+  expect(guesses.length).toBe(2)
 })
