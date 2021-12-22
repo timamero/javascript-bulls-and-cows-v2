@@ -23,7 +23,7 @@ test('guess validation method checks for four digit number', () => {
   })
 })
 
-test.only('when 2 valid guesses are made, the getGuesses method returns an array with a length of 2', () => {
+test('when 2 valid guesses are made, the getGuesses method returns an array with a length of 2', () => {
   const bac = new BullsAndCows()
 
   bac.newGuess('1234')
@@ -32,4 +32,14 @@ test.only('when 2 valid guesses are made, the getGuesses method returns an array
   const guesses = bac.getGuesses()
 
   expect(guesses.length).toBe(2)
+})
+
+test.only('a random 4 digit number is generated', () => {
+  const bac = new BullsAndCows()
+
+  bac.generateTargetNumber()
+
+  const targetNumber = bac.getTargetNumber()
+
+  expect(targetNumber).toMatch(/^\d{4}$/)
 })
