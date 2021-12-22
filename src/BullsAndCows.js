@@ -2,6 +2,7 @@ class BullsAndCows {
   constructor() {
     this.lastGuess
     this.guesses = []
+    this.targetNumber
   }
 
   getGuesses() {
@@ -10,6 +11,14 @@ class BullsAndCows {
 
   newGuess(guess) {
     this.guesses.push(guess)
+  }
+
+  generateTargetNumber() {
+    this.targetNumber = Array.from(new Array(4)).map(() => Math.floor(Math.random() * 10)).join('')
+  }
+
+  getTargetNumber() {
+    return this.targetNumber
   }
 
   static validateGuess(guess) {
