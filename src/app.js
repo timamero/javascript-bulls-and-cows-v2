@@ -28,6 +28,8 @@ const previousGuessesContainer = document.getElementById('previous-guesses')
  * Initialize Bulls and Cows game
 */
 let bac = new BullsAndCows()
+bac.generateTargetNumber()
+console.log('target number', bac.getTargetNumber())
 
 /*
  * User Events
