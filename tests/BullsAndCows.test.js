@@ -34,7 +34,7 @@ test('when 2 valid guesses are made, the getGuesses method returns an array with
   expect(guesses.length).toBe(2)
 })
 
-test.only('a random 4 digit number is generated', () => {
+test('a random 4 digit number is generated', () => {
   const bac = new BullsAndCows()
 
   bac.generateTargetNumber()
@@ -42,4 +42,27 @@ test.only('a random 4 digit number is generated', () => {
   const targetNumber = bac.getTargetNumber()
 
   expect(targetNumber).toMatch(/^\d{4}$/)
+})
+
+test.only('when guess matches target number, isLastGuessEqualTarget returns true', () => {
+  const bac = new BullsAndCows()
+
+  bac.generateTargetNumber()
+
+  const targetNumber = bac.getTargetNumber()
+  bac.newGuess(targetNumber)
+  const isLastGuessEqualTarget = bac.isLastGuessEqualTarget()
+
+  expect(isLastGuessEqualTarget).toBe(true)
+})
+
+test.only('when guess does not matches target number, isLastGuessEqualTarget returns false', () => {
+  const bac = new BullsAndCows()
+
+  bac.generateTargetNumber()
+  const guess = bac.getTargetNumber().split('').map(num => Number(num) < 9 ? Number(num) + 1 : 0).join('')
+  bac.newGuess(guess)
+  const isLastGuessEqualTarget = bac.isLastGuessEqualTarget()
+
+  expect(isLastGuessEqualTarget).toBe(false)
 })
