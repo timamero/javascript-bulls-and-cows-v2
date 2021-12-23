@@ -77,7 +77,7 @@ submitBtn.addEventListener('click', () => {
   if (BullsAndCows.validateGuess(guessInput.value)) {
     bac.newGuess(guessInput.value)
     console.log('lastGuess', bac.getGuesses())
-
+    console.log('isLastGuessEqualTarget', bac.isLastGuessEqualTarget())
     previousGuessesContainer.innerHTML += `<p>${guessInput.value}</p>`
   }
 
