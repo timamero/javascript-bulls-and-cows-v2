@@ -11,6 +11,7 @@ class BullsAndCows {
 
   newGuess(guess) {
     this.guesses.push(guess)
+    this.lastGuess = guess
   }
 
   generateTargetNumber() {
@@ -19,6 +20,10 @@ class BullsAndCows {
 
   getTargetNumber() {
     return this.targetNumber
+  }
+
+  isLastGuessEqualTarget() {
+    return this.lastGuess === this.targetNumber
   }
 
   static validateGuess(guess) {
