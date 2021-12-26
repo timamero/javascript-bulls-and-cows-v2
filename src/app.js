@@ -77,8 +77,22 @@ submitBtn.addEventListener('click', () => {
   if (BullsAndCows.validateGuess(guessInput.value)) {
     bac.newGuess(guessInput.value)
     console.log('lastGuess', bac.getGuesses())
-    console.log('isLastGuessEqualTarget', bac.isLastGuessEqualTarget())
+    const isLastGuessEqualTarget = bac.isLastGuessEqualTarget()
+    console.log('isLastGuessEqualTarget', isLastGuessEqualTarget)
     previousGuessesContainer.innerHTML += `<p>${guessInput.value}</p>`
+
+    if (bac.isGameEnded()) {
+      endGame(isLastGuessEqualTarget)
+    }
   }
 
 })
+
+function endGame(isMatched) {
+  console.log('game ended')
+  if (isMatched) {
+    console.log('guess matched target')
+  } else {
+    console.log('ran out of guesses')
+  }
+}
