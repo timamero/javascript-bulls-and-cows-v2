@@ -3,6 +3,7 @@ class BullsAndCows {
     this.lastGuess
     this.guesses = []
     this.targetNumber
+    this.maxNumberOfGuesses = 20
   }
 
   getGuesses() {
@@ -24,6 +25,13 @@ class BullsAndCows {
 
   isLastGuessEqualTarget() {
     return this.lastGuess === this.targetNumber
+  }
+
+  isGameEnded() {
+    if (this.lastGuess === this.targetNumber || this.guesses.length >= 20) {
+      return true
+    }
+    return false
   }
 
   static validateGuess(guess) {
