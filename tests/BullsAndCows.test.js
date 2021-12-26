@@ -44,7 +44,7 @@ test('a random 4 digit number is generated', () => {
   expect(targetNumber).toMatch(/^\d{4}$/)
 })
 
-test.only('when guess matches target number, isLastGuessEqualTarget returns true', () => {
+test('when guess matches target number, isLastGuessEqualTarget returns true', () => {
   const bac = new BullsAndCows()
 
   bac.generateTargetNumber()
@@ -56,7 +56,7 @@ test.only('when guess matches target number, isLastGuessEqualTarget returns true
   expect(isLastGuessEqualTarget).toBe(true)
 })
 
-test.only('when guess does not matches target number, isLastGuessEqualTarget returns false', () => {
+test('when guess does not matches target number, isLastGuessEqualTarget returns false', () => {
   const bac = new BullsAndCows()
 
   bac.generateTargetNumber()
@@ -65,4 +65,36 @@ test.only('when guess does not matches target number, isLastGuessEqualTarget ret
   const isLastGuessEqualTarget = bac.isLastGuessEqualTarget()
 
   expect(isLastGuessEqualTarget).toBe(false)
+})
+
+test.only('when guess does not matches target number and number of guesses is less than 20, game is active', () => {
+  const bac = new BullsAndCows()
+
+  bac.generateTargetNumber()
+  const guess = bac.getTargetNumber().split('').map(num => Number(num) < 9 ? Number(num) + 1 : 0).join('')
+  bac.newGuess(guess)
+  const isGameEnded = bac.isGameEnded()
+
+  expect(isGameEnded).toBe(false)
+})
+
+test.only('when guess matches target number and number of guesses is less than 20, game has ended', () => {
+  const bac = new BullsAndCows()
+
+  const targetNumber = bac.getTargetNumber()
+  bac.newGuess(targetNumber)
+  const isGameEnded = bac.isGameEnded()
+
+  expect(isGameEnded).toBe(true)
+})
+
+test.only('when number of guesses is more than or equal to 20, game has ended', () => {
+  const bac = new BullsAndCows()
+
+  bac.generateTargetNumber()
+  const guess = bac.getTargetNumber().split('').map(num => Number(num) < 9 ? Number(num) + 1 : 0).join('')
+  Array.from(new Array(20)).forEach(() => bac.newGuess(guess))
+  const isGameEnded = bac.isGameEnded()
+
+  expect(isGameEnded).toBe(true)
 })
