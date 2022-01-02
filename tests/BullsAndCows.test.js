@@ -1,5 +1,17 @@
 const BullsAndCows = require('../src/BullsAndCows')
 
+function generateNonMatchingGuess(target) {
+  let guess = []
+  while (guess.length < 4) {
+    const num = Math.floor(Math.random() * 10).toString()
+    if (!target.includes(num)) {
+      guess.push(num)
+    }
+  }
+
+  return guess.join('')
+}
+
 test('guess validation method checks for four digit number', () => {
   const guessArr = [
     ['1234', true],
@@ -67,7 +79,7 @@ test('when guess does not matches target number, isLastGuessEqualTarget returns 
   expect(isLastGuessEqualTarget).toBe(false)
 })
 
-test.only('when guess does not matches target number and number of guesses is less than 20, game is active', () => {
+test('when guess does not matches target number and number of guesses is less than 20, game is active', () => {
   const bac = new BullsAndCows()
 
   bac.generateTargetNumber()
@@ -78,7 +90,7 @@ test.only('when guess does not matches target number and number of guesses is le
   expect(isGameEnded).toBe(false)
 })
 
-test.only('when guess matches target number and number of guesses is less than 20, game has ended', () => {
+test('when guess matches target number and number of guesses is less than 20, game has ended', () => {
   const bac = new BullsAndCows()
 
   const targetNumber = bac.getTargetNumber()
@@ -88,7 +100,7 @@ test.only('when guess matches target number and number of guesses is less than 2
   expect(isGameEnded).toBe(true)
 })
 
-test.only('when number of guesses is more than or equal to 20, game has ended', () => {
+test('when number of guesses is more than or equal to 20, game has ended', () => {
   const bac = new BullsAndCows()
 
   bac.generateTargetNumber()
@@ -97,4 +109,87 @@ test.only('when number of guesses is more than or equal to 20, game has ended', 
   const isGameEnded = bac.isGameEnded()
 
   expect(isGameEnded).toBe(true)
+})
+
+test('when guess does not have any numbers matching the target number, there are no bulls or cows', () => {
+  const bac = new BullsAndCows()
+
+  bac.generateTargetNumber()
+  const guess = generateNonMatchingGuess(bac.getTargetNumber())
+  bac.newGuess(guess)
+  const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+
+  expect(bulls).toBe(0)
+  expect(cows).toBe(0)
+})
+
+test.only('when guess has one correct number in the correct position, there is 1 bulls and 0 cows', () => {
+  const bac = new BullsAndCows()
+
+  bac.generateTargetNumber()
+
+  const guess = generateNonMatchingGuess(bac.getTargetNumber())
+  const guessArr = guess.split('')
+  guessArr.splice(1, 1, bac.getTargetNumber()[1])
+  bac.newGuess(guessArr.join(''))
+  const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+
+  expect(bulls).toBe(1)
+  expect(cows).toBe(0)
+})
+
+test.only('when guess has one correct number in the wrong position, there is 0 bulls and 1 cows', () => {
+  const bac = new BullsAndCows()
+
+  bac.generateTargetNumber()
+  const guess = generateNonMatchingGuess(bac.getTargetNumber())
+  const guessArr = guess.split('')
+  guessArr.splice(1, 1, bac.getTargetNumber()[2])
+  bac.newGuess(guessArr.join(''))
+  const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+
+  expect(bulls).toBe(0)
+  expect(cows).toBe(1)
+})
+
+test.only('when guess has four correct numbers in the correct position, there is 4 bulls and 0 cows', () => {
+  const bac = new BullsAndCows()
+
+  bac.generateTargetNumber()
+  const targetNumber = bac.getTargetNumber()
+  bac.newGuess(targetNumber)
+  const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+
+  expect(bulls).toBe(4)
+  expect(cows).toBe(0)
+})
+// last one left
+test.only('when guess has four correct numbers in the wrong position, there is 0 bulls and 4 cows', () => {
+  const bac = new BullsAndCows()
+
+  let numberOfUniqueNumbers = 0
+  let uniqueArray
+  let targetNumber
+  bac.generateTargetNumber()
+  // Easier to pass test if target number has 4 unique values. If target number has les than 4 unique numbers, regenerate target number
+  while (numberOfUniqueNumbers < 4) {
+    numberOfUniqueNumbers = 0
+    uniqueArray = []
+    const target = bac.getTargetNumber().split('')
+    target.forEach(el => {
+      if (!uniqueArray.includes(el)) {
+        uniqueArray.push(el)
+      }
+    })
+    targetNumber = target.join('')
+    numberOfUniqueNumbers = uniqueArray.length
+  }
+
+  const lastNumber = targetNumber.slice(-1)
+  const guess = lastNumber.concat(targetNumber).slice(0, 4)
+  bac.newGuess(guess)
+  const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+
+  expect(bulls).toBe(0)
+  expect(cows).toBe(4)
 })
