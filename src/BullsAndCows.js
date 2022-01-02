@@ -34,6 +34,23 @@ class BullsAndCows {
     return false
   }
 
+  getBullsAndCowsOfLastGuess() {
+    const cowsArray = this.lastGuess.split('').map((el, i) => {
+      if (this.targetNumber.includes(el) && this.targetNumber.split('')[i] !== el) {
+        return el
+      }
+      return ''
+    }).join('')
+    const bullsArray = this.lastGuess.split('').map((el, i) => {
+      if (this.targetNumber.split('')[i] === el) {
+        return el
+      }
+      return ''
+    }).join('')
+
+    return [bullsArray.length, cowsArray.length]
+  }
+
   static validateGuess(guess) {
     return guess.split('').length === 4
       ? guess.split('')
