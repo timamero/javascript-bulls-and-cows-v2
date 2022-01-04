@@ -19,6 +19,11 @@ class BullsAndCows {
     this.targetNumber = Array.from(new Array(4)).map(() => Math.floor(Math.random() * 10)).join('')
   }
 
+  setTargetNumber(target) {
+    // Used for testing only
+    this.targetNumber = target
+  }
+
   getTargetNumber() {
     return this.targetNumber
   }
