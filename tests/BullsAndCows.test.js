@@ -141,7 +141,7 @@ test('when guess does not have any numbers matching the target number, there are
   })
 })
 
-test.only('when guess has one correct number in the correct position, there is 1 bulls and 0 cows', () => {
+test('when guess has one correct number in the correct position, there is 1 bulls and 0 cows', () => {
   targets.forEach(t => {
     const bac = new BullsAndCows()
 
@@ -155,6 +155,25 @@ test.only('when guess has one correct number in the correct position, there is 1
     const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
 
     expect(bulls).toBe(1)
+    expect(cows).toBe(0)
+  })
+})
+
+test.only('when guess has two correct numbers in the correct position, there are 2 bulls and 0 cows', () => {
+  targets.forEach(t => {
+    const bac = new BullsAndCows()
+
+    bac.setTargetNumber(t)
+    console.log('target', bac.getTargetNumber())
+    const guess = generateNonMatchingGuess(bac.getTargetNumber())
+    const guessArr = guess.split('')
+    guessArr.splice(1, 1, bac.getTargetNumber()[1])
+    guessArr.splice(2, 1, bac.getTargetNumber()[2])
+    console.log('guess', guessArr.join(''))
+    bac.newGuess(guessArr.join(''))
+    const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+
+    expect(bulls).toBe(2)
     expect(cows).toBe(0)
   })
 })
