@@ -111,19 +111,37 @@ test('when number of guesses is more than or equal to 20, game has ended', () =>
   expect(isGameEnded).toBe(true)
 })
 
-test('when guess does not have any numbers matching the target number, there are no bulls or cows', () => {
-  const bac = new BullsAndCows()
+const targets = [
+  '1234',
+  '4444',
+  '3779',
+  '3773',
+  '3123',
+  '8812',
+  '1288',
+  '5551',
+  '1555',
+  '0456',
+  '0034',
+  '0008',
+  '0000'
+]
 
-  bac.generateTargetNumber()
-  const guess = generateNonMatchingGuess(bac.getTargetNumber())
-  bac.newGuess(guess)
-  const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+test.only('when guess does not have any numbers matching the target number, there are no bulls or cows', () => {
+  // let results = []
+  targets.forEach(t => {
+    const bac = new BullsAndCows()
+    bac.setTargetNumber(t)
+    const guess = generateNonMatchingGuess(bac.getTargetNumber())
+    bac.newGuess(guess)
+    const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
 
-  expect(bulls).toBe(0)
-  expect(cows).toBe(0)
+    expect(bulls).toBe(0)
+    expect(cows).toBe(0)
+  })
 })
 
-test.only('when guess has one correct number in the correct position, there is 1 bulls and 0 cows', () => {
+test('when guess has one correct number in the correct position, there is 1 bulls and 0 cows', () => {
   const bac = new BullsAndCows()
 
   bac.generateTargetNumber()
@@ -138,7 +156,7 @@ test.only('when guess has one correct number in the correct position, there is 1
   expect(cows).toBe(0)
 })
 
-test.only('when guess has one correct number in the wrong position, there is 0 bulls and 1 cows', () => {
+test('when guess has one correct number in the wrong position, there is 0 bulls and 1 cows', () => {
   const bac = new BullsAndCows()
 
   bac.generateTargetNumber()
@@ -152,7 +170,7 @@ test.only('when guess has one correct number in the wrong position, there is 0 b
   expect(cows).toBe(1)
 })
 
-test.only('when guess has four correct numbers in the correct position, there is 4 bulls and 0 cows', () => {
+test('when guess has four correct numbers in the correct position, there is 4 bulls and 0 cows', () => {
   const bac = new BullsAndCows()
 
   bac.generateTargetNumber()
@@ -164,7 +182,7 @@ test.only('when guess has four correct numbers in the correct position, there is
   expect(cows).toBe(0)
 })
 // last one left
-test.only('when guess has four correct numbers in the wrong position, there is 0 bulls and 4 cows', () => {
+test('when guess has four correct numbers in the wrong position, there is 0 bulls and 4 cows', () => {
   const bac = new BullsAndCows()
 
   let numberOfUniqueNumbers = 0
