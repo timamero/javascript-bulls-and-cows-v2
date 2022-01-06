@@ -81,7 +81,15 @@ submitBtn.addEventListener('click', () => {
     console.log('isLastGuessEqualTarget', isLastGuessEqualTarget)
     const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
 
-    previousGuessesContainer.innerHTML += `<p>${guessInput.value} | bulls=${bulls} | cows=${cows}</p>`
+    previousGuessesContainer.innerHTML = `
+      <tr>
+        <td>${guessInput.value}</td>
+        <td>${bulls}</td>
+        <td>${cows}</td>
+      </tr>
+      ` + previousGuessesContainer.innerHTML
+    guessInput.value = ''
+    guessInput.focus()
 
     if (bac.isGameEnded()) {
       endGame(isLastGuessEqualTarget)
