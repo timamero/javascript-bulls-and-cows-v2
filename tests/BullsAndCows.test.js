@@ -163,7 +163,7 @@ test.only('when guess has four correct numbers in the correct position, there is
   expect(bulls).toBe(4)
   expect(cows).toBe(0)
 })
-// last one left
+
 test.only('when guess has four correct numbers in the wrong position, there is 0 bulls and 4 cows', () => {
   const bac = new BullsAndCows()
 
