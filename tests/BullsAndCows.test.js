@@ -111,85 +111,226 @@ test('when number of guesses is more than or equal to 20, game has ended', () =>
   expect(isGameEnded).toBe(true)
 })
 
-test('when guess does not have any numbers matching the target number, there are no bulls or cows', () => {
-  const bac = new BullsAndCows()
+test.only('when guess does not have any numbers matching the target number, there are no bulls or cows', () => {
+  const targets = [
+    '1234',
+    '4444',
+    '3779',
+    '3773',
+    '3123',
+    '8812',
+    '1288',
+    '5551',
+    '1555',
+    '0456',
+    '0034',
+    '0008',
+    '0000'
+  ]
 
-  bac.generateTargetNumber()
-  const guess = generateNonMatchingGuess(bac.getTargetNumber())
-  bac.newGuess(guess)
-  const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+  targets.forEach(t => {
+    const bac = new BullsAndCows()
 
-  expect(bulls).toBe(0)
-  expect(cows).toBe(0)
+    bac.setTargetNumber(t)
+    const guess = generateNonMatchingGuess(bac.getTargetNumber())
+    bac.newGuess(guess)
+    const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+
+    expect(bulls).toBe(0)
+    expect(cows).toBe(0)
+  })
 })
 
 test.only('when guess has one correct number in the correct position, there is 1 bulls and 0 cows', () => {
-  const bac = new BullsAndCows()
+  const guessAndTargetResults = [
+    {
+      target: '1234',
+      guess: '1777',
+    },
+    {
+      target: '5533',
+      guess: '1939',
+    },
+    {
+      target: '7221',
+      guess: '3245',
+    },
+    {
+      target: '1112',
+      guess: '0013',
+    },
+  ]
 
-  bac.generateTargetNumber()
+  guessAndTargetResults.forEach(t => {
+    const bac = new BullsAndCows()
 
-  const guess = generateNonMatchingGuess(bac.getTargetNumber())
-  const guessArr = guess.split('')
-  guessArr.splice(1, 1, bac.getTargetNumber()[1])
-  bac.newGuess(guessArr.join(''))
-  const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+    bac.setTargetNumber(t.target)
+    bac.newGuess(t.guess)
+    const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
 
-  expect(bulls).toBe(1)
-  expect(cows).toBe(0)
+    expect(bulls).toBe(1)
+    expect(cows).toBe(0)
+  })
+})
+
+test.only('when guess has two correct numbers in the correct position, there are 2 bulls and 0 cows', () => {
+  const guessAndTargetResults = [
+    {
+      target: '1234',
+      guess: '1277',
+    },
+    {
+      target: '5533',
+      guess: '1539',
+    },
+    {
+      target: '7221',
+      guess: '3241',
+    },
+    {
+      target: '1112',
+      guess: '0113',
+    },
+  ]
+
+  guessAndTargetResults.forEach(t => {
+    const bac = new BullsAndCows()
+
+    bac.setTargetNumber(t.target)
+    bac.newGuess(t.guess)
+    const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+
+    expect(bulls).toBe(2)
+    expect(cows).toBe(0)
+  })
 })
 
 test.only('when guess has one correct number in the wrong position, there is 0 bulls and 1 cows', () => {
-  const bac = new BullsAndCows()
+  const guessAndTargetResults = [
+    {
+      target: '1234',
+      guess: '7177',
+    },
+    {
+      target: '5533',
+      guess: '1859',
+    },
+    {
+      target: '7221',
+      guess: '2689',
+    },
+    {
+      target: '1112',
+      guess: '0001',
+    },
+  ]
 
-  bac.generateTargetNumber()
-  const guess = generateNonMatchingGuess(bac.getTargetNumber())
-  const guessArr = guess.split('')
-  guessArr.splice(1, 1, bac.getTargetNumber()[2])
-  bac.newGuess(guessArr.join(''))
-  const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+  guessAndTargetResults.forEach(t => {
+    const bac = new BullsAndCows()
 
-  expect(bulls).toBe(0)
-  expect(cows).toBe(1)
+    bac.setTargetNumber(t.target)
+    bac.newGuess(t.guess)
+    const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+
+    expect(bulls).toBe(0)
+    expect(cows).toBe(1)
+  })
 })
 
 test.only('when guess has four correct numbers in the correct position, there is 4 bulls and 0 cows', () => {
-  const bac = new BullsAndCows()
+  const guessAndTargetResults = [
+    {
+      target: '1234',
+      guess: '1234',
+    },
+    {
+      target: '5533',
+      guess: '5533',
+    },
+    {
+      target: '7221',
+      guess: '7221',
+    },
+    {
+      target: '0001',
+      guess: '0001',
+    },
+  ]
 
-  bac.generateTargetNumber()
-  const targetNumber = bac.getTargetNumber()
-  bac.newGuess(targetNumber)
-  const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+  guessAndTargetResults.forEach(t => {
+    const bac = new BullsAndCows()
 
-  expect(bulls).toBe(4)
-  expect(cows).toBe(0)
+    bac.setTargetNumber(t.target)
+    bac.newGuess(t.guess)
+    const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+
+    expect(bulls).toBe(4)
+    expect(cows).toBe(0)
+  })
 })
 
 test.only('when guess has four correct numbers in the wrong position, there is 0 bulls and 4 cows', () => {
-  const bac = new BullsAndCows()
+  const guessAndTargetResults = [
+    {
+      target: '1234',
+      guess: '3421',
+    },
+    {
+      target: '5533',
+      guess: '3355',
+    },
+    {
+      target: '7221',
+      guess: '2172',
+    },
+    {
+      target: '6601',
+      guess: '1066',
+    },
+  ]
 
-  let numberOfUniqueNumbers = 0
-  let uniqueArray
-  let targetNumber
-  bac.generateTargetNumber()
-  // Easier to pass test if target number has 4 unique values. If target number has les than 4 unique numbers, regenerate target number
-  while (numberOfUniqueNumbers < 4) {
-    numberOfUniqueNumbers = 0
-    uniqueArray = []
-    const target = bac.getTargetNumber().split('')
-    target.forEach(el => {
-      if (!uniqueArray.includes(el)) {
-        uniqueArray.push(el)
-      }
-    })
-    targetNumber = target.join('')
-    numberOfUniqueNumbers = uniqueArray.length
-  }
+  guessAndTargetResults.forEach(t => {
+    const bac = new BullsAndCows()
 
-  const lastNumber = targetNumber.slice(-1)
-  const guess = lastNumber.concat(targetNumber).slice(0, 4)
-  bac.newGuess(guess)
-  const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+    bac.setTargetNumber(t.target)
+    bac.newGuess(t.guess)
 
-  expect(bulls).toBe(0)
-  expect(cows).toBe(4)
+    const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+
+    expect(bulls).toBe(0)
+    expect(cows).toBe(4)
+  })
+})
+
+test.only('when guess has four correct numbers with two in the correct position and two in the wrong position, there is 2 bulls and 2 cows', () => {
+  const guessAndTargetResults = [
+    {
+      target: '1234',
+      guess: '1324',
+    },
+    {
+      target: '5533',
+      guess: '3535',
+    },
+    {
+      target: '7221',
+      guess: '2721',
+    },
+    {
+      target: '6601',
+      guess: '6610',
+    },
+  ]
+
+  guessAndTargetResults.forEach(t => {
+    const bac = new BullsAndCows()
+
+    bac.setTargetNumber(t.target)
+    bac.newGuess(t.guess)
+
+    const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
+
+    expect(bulls).toBe(2)
+    expect(cows).toBe(2)
+  })
 })

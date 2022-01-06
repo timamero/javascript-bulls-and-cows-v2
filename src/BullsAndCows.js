@@ -19,6 +19,11 @@ class BullsAndCows {
     this.targetNumber = Array.from(new Array(4)).map(() => Math.floor(Math.random() * 10)).join('')
   }
 
+  setTargetNumber(target) {
+    // Used for testing only
+    this.targetNumber = target
+  }
+
   getTargetNumber() {
     return this.targetNumber
   }
@@ -35,14 +40,19 @@ class BullsAndCows {
   }
 
   getBullsAndCowsOfLastGuess() {
-    const cowsArray = this.lastGuess.split('').map((el, i) => {
-      if (this.targetNumber.includes(el) && this.targetNumber.split('')[i] !== el) {
+    let targetToCheck = this.targetNumber.split('')
+    const bullsArray = this.lastGuess.split('').map((el, i) => {
+      if (targetToCheck[i] === el) {
+        targetToCheck.splice(i, 1, 'b')
         return el
       }
       return ''
     }).join('')
-    const bullsArray = this.lastGuess.split('').map((el, i) => {
-      if (this.targetNumber.split('')[i] === el) {
+
+    const cowsArray = this.lastGuess.split('').map((el, i) => {
+      if (targetToCheck.includes(el) && targetToCheck[i] !== 'b') {
+        const index = targetToCheck.indexOf(el)
+        targetToCheck.splice(index, 1, 'c')
         return el
       }
       return ''
