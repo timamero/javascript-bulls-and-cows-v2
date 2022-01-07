@@ -4,7 +4,7 @@ class BullsAndCows {
     this.guesses = []
     this.targetNumber
     this.maxNumberOfGuesses = 20
-    this.endGameCase = ''
+    this.endGameCase
   }
 
   getGuesses() {
@@ -27,6 +27,11 @@ class BullsAndCows {
 
   getTargetNumber() {
     return this.targetNumber
+  }
+
+  getLastGuess() {
+    // Used for testing only
+    return this.lastGuess
   }
 
   isLastGuessEqualTarget() {
@@ -65,6 +70,13 @@ class BullsAndCows {
     }).join('')
 
     return [bullsArray.length, cowsArray.length]
+  }
+
+  resetGame() {
+    this.guesses = []
+    this.targetNumber = null
+    this.lastGuess = null
+    this.endGameCase = null
   }
 
   static validateGuess(guess) {
