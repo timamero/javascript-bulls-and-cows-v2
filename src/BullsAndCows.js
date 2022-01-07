@@ -4,6 +4,7 @@ class BullsAndCows {
     this.guesses = []
     this.targetNumber
     this.maxNumberOfGuesses = 20
+    this.endGameCase = ''
   }
 
   getGuesses() {
@@ -34,9 +35,14 @@ class BullsAndCows {
 
   isGameEnded() {
     if (this.lastGuess === this.targetNumber || this.guesses.length >= 20) {
+      this.endGameCase = this.lastGuess === this.targetNumber ? 'matched' : 'exceeded-guess-count'
       return true
     }
     return false
+  }
+
+  getEndGameCase() {
+    return this.endGameCase
   }
 
   getBullsAndCowsOfLastGuess() {
