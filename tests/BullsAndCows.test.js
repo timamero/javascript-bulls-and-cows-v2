@@ -56,34 +56,11 @@ test('a random 4 digit number is generated', () => {
   expect(targetNumber).toMatch(/^\d{4}$/)
 })
 
-test('when guess matches target number, isLastGuessEqualTarget returns true', () => {
-  const bac = new BullsAndCows()
-
-  bac.generateTargetNumber()
-
-  const targetNumber = bac.getTargetNumber()
-  bac.newGuess(targetNumber)
-  const isLastGuessEqualTarget = bac.isLastGuessEqualTarget()
-
-  expect(isLastGuessEqualTarget).toBe(true)
-})
-
-test('when guess does not matches target number, isLastGuessEqualTarget returns false', () => {
-  const bac = new BullsAndCows()
-
-  bac.generateTargetNumber()
-  const guess = bac.getTargetNumber().split('').map(num => Number(num) < 9 ? Number(num) + 1 : 0).join('')
-  bac.newGuess(guess)
-  const isLastGuessEqualTarget = bac.isLastGuessEqualTarget()
-
-  expect(isLastGuessEqualTarget).toBe(false)
-})
-
 test('when guess does not matches target number and number of guesses is less than 20, game is active', () => {
   const bac = new BullsAndCows()
 
   bac.generateTargetNumber()
-  const guess = bac.getTargetNumber().split('').map(num => Number(num) < 9 ? Number(num) + 1 : 0).join('')
+  const guess = generateNonMatchingGuess()
   bac.newGuess(guess)
   const isGameEnded = bac.isGameEnded()
 
@@ -106,7 +83,7 @@ test('when number of guesses is more than or equal to 20, game has ended', () =>
   const bac = new BullsAndCows()
 
   bac.generateTargetNumber()
-  const guess = bac.getTargetNumber().split('').map(num => Number(num) < 9 ? Number(num) + 1 : 0).join('')
+  const guess = generateNonMatchingGuess()
   Array.from(new Array(20)).forEach(() => bac.newGuess(guess))
   const isGameEnded = bac.isGameEnded()
   const endGameCase = bac.getEndGameCase()
