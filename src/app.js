@@ -19,6 +19,7 @@ const closeAboutBtn = document.getElementById('close-about-btn')
 /* Game */
 const guessInput = document.getElementById('guess-input')
 const submitBtn = document.getElementById('submit-btn')
+const invalidGuessWarning = document.getElementById('invalid-guess-warning')
 const endGameModal = document.getElementById('end-game')
 const endGameHeading = document.getElementById('end-game-heading')
 const closeEndGameBtn = document.getElementById('close-end-game-btn')
@@ -93,15 +94,24 @@ submitBtn.addEventListener('click', () => {
         <td>${cows}</td>
       </tr>
       ` + previousGuessesContainer.innerHTML
-    guessInput.value = ''
-    guessInput.focus()
+    resetGuessInput()
 
     if (bac.isGameEnded()) {
       endGame(bac.getEndGameCase())
     }
+  } else {
+    invalidGuessWarning.classList.toggle('active')
+    resetGuessInput()
+    setTimeout(() => {
+      invalidGuessWarning.classList.toggle('active')
+    }, 3000)
   }
-
 })
+
+function resetGuessInput() {
+  guessInput.value = ''
+  guessInput.focus()
+}
 
 /* End Game */
 closeEndGameBtn.addEventListener('click', () => {
@@ -135,5 +145,6 @@ function resetGame() {
   bac.resetGame()
 
   guessInput.disabled = false
+  resetGuessInput()
   previousGuessesContainer.innerHTML = ''
 }
