@@ -58,6 +58,10 @@ h3 {
   font-size: 2.5em;
 }
 
+#end-game-heading {
+  font-size: 2em;
+}
+
 #guess-input {
   font-size: 2.5em;
   font-family: 'Lato', sans-serif;

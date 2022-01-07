@@ -18,6 +18,9 @@ const closeAboutBtn = document.getElementById('close-about-btn')
 /* Game */
 const guessInput = document.getElementById('guess-input')
 const submitBtn = document.getElementById('submit-btn')
+const endGameModal = document.getElementById('end-game')
+const endGameHeading = document.getElementById('end-game-heading')
+const closeEndGameBtn = document.getElementById('close-end-game-btn')
 
 /*
  * Create containing for holding previous guesses
@@ -76,9 +79,6 @@ submitBtn.addEventListener('click', () => {
 
   if (BullsAndCows.validateGuess(guessInput.value)) {
     bac.newGuess(guessInput.value)
-    console.log('lastGuess', bac.getGuesses())
-    const isLastGuessEqualTarget = bac.isLastGuessEqualTarget()
-    console.log('isLastGuessEqualTarget', isLastGuessEqualTarget)
     const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
 
     previousGuessesContainer.innerHTML = `
@@ -92,17 +92,29 @@ submitBtn.addEventListener('click', () => {
     guessInput.focus()
 
     if (bac.isGameEnded()) {
-      endGame(isLastGuessEqualTarget)
+      endGame(bac.getEndGameCase())
     }
   }
 
 })
 
-function endGame(isMatched) {
+closeEndGameBtn.addEventListener('click', () => {
+  console.log('close end game modal')
+  endGameModal.classList.toggle('active')
+})
+
+function endGame(endCase) {
   console.log('game ended')
-  if (isMatched) {
-    console.log('guess matched target')
-  } else {
-    console.log('ran out of guesses')
+  endGameModal.classList.toggle('active')
+  guessInput.disabled = true
+  switch (endCase) {
+    case 'matched':
+      endGameHeading.textContent = 'You cracked the code!\n🤗'
+      console.log('guess matched target')
+      break
+    case 'exceeded-guess-count':
+      endGameHeading.textContent = 'You ran out of guesses.\n😔'
+      console.log('ran out of guesses')
   }
 }
+
