@@ -10,6 +10,7 @@ const menuBtn = document.getElementById('menu-btn')
 const hideMenuBtn = document.getElementById('hide-menu-btn')
 const instructionsBtn = document.getElementById('instructions-btn')
 const aboutBtn = document.getElementById('about-btn')
+const newGameBtn = document.getElementById('new-game-btn')
 /* Instruction and about modals */
 const instructions = document.getElementById('instructions')
 const closeInstructionsBtn = document.getElementById('close-instructions-btn')
@@ -21,6 +22,7 @@ const submitBtn = document.getElementById('submit-btn')
 const endGameModal = document.getElementById('end-game')
 const endGameHeading = document.getElementById('end-game-heading')
 const closeEndGameBtn = document.getElementById('close-end-game-btn')
+const resetGameBtn = document.getElementById('reset-game-btn')
 
 /*
  * Create containing for holding previous guesses
@@ -77,6 +79,11 @@ closeAboutBtn.addEventListener('click', () => {
 submitBtn.addEventListener('click', () => {
   console.log('guess submitted', guessInput.value)
 
+  if (bac.getTargetNumber() === null) {
+    bac.generateTargetNumber()
+    console.log('new target number', bac.getTargetNumber())
+  }
+
   if (BullsAndCows.validateGuess(guessInput.value)) {
     bac.newGuess(guessInput.value)
     const [bulls, cows] = bac.getBullsAndCowsOfLastGuess()
@@ -98,6 +105,7 @@ submitBtn.addEventListener('click', () => {
 
 })
 
+/* End Game */
 closeEndGameBtn.addEventListener('click', () => {
   console.log('close end game modal')
   endGameModal.classList.toggle('active')
@@ -118,3 +126,21 @@ function endGame(endCase) {
   }
 }
 
+/* Reset Game */
+resetGameBtn.addEventListener('click', () => {
+  resetGame()
+  endGameModal.classList.toggle('active')
+})
+
+newGameBtn.addEventListener('click', () => {
+  resetGame()
+  menu.classList.toggle('hide')
+})
+
+function resetGame() {
+  console.log('reset game')
+  bac.resetGame()
+
+  guessInput.disabled = false
+  previousGuessesContainer.innerHTML = ''
+}
