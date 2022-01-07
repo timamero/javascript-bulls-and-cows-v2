@@ -1,8 +1,11 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/05059e32-5ecf-443d-aee7-0ee7038bfe7c/deploy-status)](https://app.netlify.com/sites/bulls-and-cows-v2/deploys)
 
 # Bulls and Cows Game
-*This project is in development*  
-[Demo Bulls and Cows game here](https://bulls-and-cows-v2.netlify.app/)
+[Play Bulls and Cows game here](https://bulls-and-cows-v2.netlify.app/)
+
+## Description
+Bulls and cows is a code cracking guessing game. 
+[Learn more about the game here](https://en.wikipedia.org/wiki/Bulls_and_Cows)
 
 ## Testing
 1. Start the server
