@@ -77,8 +77,6 @@ closeAboutBtn.addEventListener('click', () => {
 
 /* Game */
 submitBtn.addEventListener('click', () => {
-  console.log('guess submitted', guessInput.value)
-
   if (bac.getTargetNumber() === null) {
     bac.generateTargetNumber()
     console.log('new target number', bac.getTargetNumber())
@@ -107,22 +105,18 @@ submitBtn.addEventListener('click', () => {
 
 /* End Game */
 closeEndGameBtn.addEventListener('click', () => {
-  console.log('close end game modal')
   endGameModal.classList.toggle('active')
 })
 
 function endGame(endCase) {
-  console.log('game ended')
   endGameModal.classList.toggle('active')
   guessInput.disabled = true
   switch (endCase) {
     case 'matched':
       endGameHeading.textContent = 'You cracked the code!\n🤗'
-      console.log('guess matched target')
       break
     case 'exceeded-guess-count':
       endGameHeading.textContent = 'You ran out of guesses.\n😔'
-      console.log('ran out of guesses')
   }
 }
 
@@ -138,7 +132,6 @@ newGameBtn.addEventListener('click', () => {
 })
 
 function resetGame() {
-  console.log('reset game')
   bac.resetGame()
 
   guessInput.disabled = false

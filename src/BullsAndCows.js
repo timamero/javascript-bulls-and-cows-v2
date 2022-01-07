@@ -34,10 +34,6 @@ class BullsAndCows {
     return this.lastGuess
   }
 
-  // isLastGuessEqualTarget() {
-  //   return this.lastGuess === this.targetNumber
-  // }
-
   isGameEnded() {
     if (this.lastGuess === this.targetNumber || this.guesses.length >= 20) {
       this.endGameCase = this.lastGuess === this.targetNumber ? 'matched' : 'exceeded-guess-count'
