@@ -90,7 +90,7 @@ test('when guess does not matches target number and number of guesses is less th
   expect(isGameEnded).toBe(false)
 })
 
-test.only('when guess matches target number and number of guesses is less than 20, game has ended', () => {
+test('when guess matches target number and number of guesses is less than 20, game has ended', () => {
   const bac = new BullsAndCows()
 
   const targetNumber = bac.getTargetNumber()
@@ -102,7 +102,7 @@ test.only('when guess matches target number and number of guesses is less than 2
   expect(endGameCase).toBe('matched')
 })
 
-test.only('when number of guesses is more than or equal to 20, game has ended', () => {
+test('when number of guesses is more than or equal to 20, game has ended', () => {
   const bac = new BullsAndCows()
 
   bac.generateTargetNumber()
@@ -337,4 +337,23 @@ test('when guess has four correct numbers with two in the correct position and t
     expect(bulls).toBe(2)
     expect(cows).toBe(2)
   })
+})
+
+test.only('when game is reset, game variables are reset', () => {
+  const bac = new BullsAndCows()
+  bac.generateTargetNumber()
+  Array.from(new Array(20)).forEach(() => {
+    bac.newGuess(generateNonMatchingGuess(bac.getTargetNumber()))
+  })
+  bac.resetGame()
+
+  const guessesLength = bac.getGuesses().length
+  const targetNumber = bac.getTargetNumber()
+  const lastGuess = bac.getLastGuess()
+  const endGameCase = bac.getEndGameCase()
+
+  expect(guessesLength).toBe(0)
+  expect(targetNumber).toBe(null)
+  expect(lastGuess).toBe(null)
+  expect(endGameCase).toBe(null)
 })
