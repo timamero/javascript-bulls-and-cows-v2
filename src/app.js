@@ -21,6 +21,7 @@ const guessInput = document.getElementById('guess-input')
 const submitBtn = document.getElementById('submit-btn')
 const invalidGuessWarning = document.getElementById('invalid-guess-warning')
 const endGameModal = document.getElementById('end-game')
+const endGameMessage = document.getElementById('end-game-message')
 const endGameHeading = document.getElementById('end-game-heading')
 const closeEndGameBtn = document.getElementById('close-end-game-btn')
 const resetGameBtn = document.getElementById('reset-game-btn')
@@ -124,9 +125,11 @@ function endGame(endCase) {
   switch (endCase) {
     case 'matched':
       endGameHeading.textContent = 'You cracked the code!\n🤗'
+      endGameMessage.innerHTML += `You figured it out with ${bac.getGuesses().length} guesses.`
       break
     case 'exceeded-guess-count':
       endGameHeading.textContent = 'You ran out of guesses.\n😔'
+      endGameMessage.innerHTML += `The correct number was ${bac.getTargetNumber()}.`
   }
 }
 
@@ -147,4 +150,5 @@ function resetGame() {
   guessInput.disabled = false
   resetGuessInput()
   previousGuessesContainer.innerHTML = ''
+  endGameMessage.innerHTML = ''
 }
